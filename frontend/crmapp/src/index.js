@@ -20,6 +20,7 @@ import MeetingRecords from "./Components/MeetingRecords/MeetingRecordsMain/Meeti
 import NewPassword from "./Components/NewPassword/NewPasswordMain/NewPasswordMain";
 import PasswordReset from "./Components/PasswordReset/PasswordResetMain/PasswordResetMain";
 import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
+import AddTicketMain from "./Components/Tickets/AddTicket/AddTicketMain/AddTicketMain";
 import VerifyOtp from "./Components/VerifyOtp/VerifyOtp";
 import Entry from "./Entry";
 import "./index.css";
@@ -98,6 +99,14 @@ root.render(
           element={
             <ProtectedRoutes>
               <Tickets />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/add-ticket"
+          element={
+            <ProtectedRoutes>
+              <AddTicketMain />
             </ProtectedRoutes>
           }
         />
