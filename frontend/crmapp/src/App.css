@@ -1,0 +1,69 @@
+/* .App {
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 240px;
+  position: relative;
+  padding-top: 60px;
+  display: flex;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  position: relative;
+  top: 100%;
+  margin-top: 36px;
+  height: 100vh;
+  width: 200px;
+  background-color: #2f4050;
+}
+
+.sideBarLinks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar-link {
+  width: 100%;
+  height: 50px;
+
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.sidebar-link div {
+  margin-right: 10px;
+}
+
+.sidebar-link div:last-child {
+  margin-right: 0;
+}
+
+.sideBarLinks .sidebar-link:hover {
+  cursor: pointer;
+  background-color: #293846;
+}
+
+.sideBarLinks #active {
+  background-color: #293846;
+}
+
+.sidebar-link #icon {
+  flex: 30%;
+  place-items: center;
+  margin-left: 20px;
+}
+
+.sidebar-link #title {
+  flex: 70%;
+  margin-right: 50px;
+} */

@@ -1,0 +1,74 @@
+.connections-table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 1210px;
+  margin-top: 100px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.connections-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.connections-table-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.connections-search-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.connections-search-bar .connections-search-input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.connections-search-bar .connections-search-button {
+  width: 15%; /* Adjust width as needed */
+}
+
+.connections-table-scroll-wrapper {
+  overflow-x: auto;
+}
+
+.connections-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.connections-table th,
+.connections-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.connections-table th {
+  font-weight: bold;
+}
+
+.connections-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.connections-update-button {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.connections-no-data {
+  padding: 10px;
+  text-align: center;
+  font-style: italic;
+}

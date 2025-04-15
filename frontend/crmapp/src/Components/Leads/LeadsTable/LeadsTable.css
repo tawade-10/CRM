@@ -1,0 +1,94 @@
+.leads-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 1210px;
+  margin: 100px 0 100px 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+.leads-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.leads-text {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.priority-buttons button {
+  margin-left: 10px;
+}
+
+/* New Search Bar Styles */
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search-bar .form-control {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.search-bar .search-button {
+ width: 10%;
+}
+
+.table-wrapper {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto; /* Allow horizontal scroll for table */
+  border: 1px solid #dee2e6;
+}
+
+.leads-table {
+  width: auto;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Important for content-based column sizing */
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.thead-dark th {
+  background: #343a40;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.leads-table td,
+.leads-table th {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 8px;
+  max-width: none;
+}
+
+.scrollable-tbody tr {
+  background-color: #fff;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}

@@ -1,0 +1,136 @@
+.leads-details-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin-left: 20px; 
+}
+
+.leads-details-container {
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  height: auto;
+  width: 800px;
+  margin-left: 10px;
+  margin-top: 100px;
+  padding: 25px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.leads-details-text {
+  font-size: 1.8rem; 
+  font-weight: 600; 
+  color: #333; 
+  margin-bottom: 20px;
+}
+
+.leads-details-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: baseline;
+}
+
+.detail-label {
+  font-weight: 500; 
+  color: #555; 
+  width: 150px;
+  margin-right: 15px; /* More spacing */
+  text-align: left;
+}
+
+.detail-value {
+  flex-grow: 1;
+  text-align: left;
+  color: #333;
+}
+
+.back-button {
+  margin-top: 25px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d; /* Bootstrap secondary color */
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+.meeting-records-container {
+  /* background-color: #f9f9f9; 
+  border: 1px solid #ddd;  */
+  width: 1210px;
+  margin-top: 80px; 
+  margin-bottom: 25px;
+  /* padding: 25px;  */
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+.meeting-records-header {
+  font-size: 1.5rem; 
+  font-weight: 600; 
+  color: #333; 
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between; /* Align text to left */
+  align-items: center;
+}
+
+.meeting-records-header p {
+  margin: 0; 
+}
+
+.meeting-records-table-wrapper {
+  overflow-x: auto;
+}
+
+.meeting-records-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px; /* Add some space below the table */
+}
+
+.meeting-records-table th,
+.meeting-records-table td {
+  border: 1px solid #e0e0e0; /* Lighter border */
+  padding: 10px; /* More padding */
+  text-align: left;
+}
+
+.meeting-records-table th {
+  background-color: #f2f2f2; 
+  font-weight: 500;
+  color: #555;
+}
+
+.no-meeting-records {
+  font-style: italic;
+  color: #777;
+  margin-top: 15px;
+}
+
+.meeting-submit {
+  width: 150px; /* Slightly wider button */
+  background-color: #28a745; /* Bootstrap success color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.meeting-submit:hover {
+  background-color: #218838;
+}

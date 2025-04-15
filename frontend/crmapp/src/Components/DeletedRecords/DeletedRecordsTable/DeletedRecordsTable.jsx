@@ -1,0 +1,146 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteLeads } from "../../Services/Services"; // Assuming this service exists
+import "./DeletedRecordsTable.css"; // Create a new CSS file
+
+const DeletedRecordsTable = () => {
+  const [deletedLeads, setDeletedLeads] = useState([]);
+  const [search, setSearch] = useState("");
+  const navigator = useNavigate();
+
+  // Function to navigate to a "view deleted lead" page if needed
+  const viewDeletedLead = (id) => {
+    navigator(`/deleted-leads/${id}`);
+  };
+
+  useEffect(() => {
+    fetchDeletedLeads();
+  }, []);
+
+  const fetchDeletedLeads = () => {
+    deleteLeads() // Call the correct service to fetch deleted leads
+      .then((response) => {
+        setDeletedLeads(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching deleted leads:", error);
+      });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredDeletedLeads = deletedLeads.filter((lead) => {
+    const searchFields = [
+      lead.client_name,
+      lead.company,
+      lead.designation,
+      lead.assigned_from,
+      lead.assigned_to,
+      lead.priority,
+      lead.status,
+      lead.meeting_type,
+      String(lead.id),
+      lead.deleted_at, // Assuming the deleted timestamp is available
+      lead.deleted_by, // Assuming information about who deleted it is available
+    ];
+    return searchFields.some((field) =>
+      String(field).toLowerCase().includes(search.toLowerCase())
+    );
+  });
+
+  return (
+    <div className="deleted-leads-container">
+      <div className="deleted-leads-header">
+        <p className="deleted-leads-text">Deleted Records</p>
+      </div>
+
+      {/* Search Bar */}
+      <div className="deleted-leads-search-bar">
+        <input
+          type="search"
+          className="form-control"
+          value={search}
+          onChange={handleSearchChange}
+          placeholder="Search Deleted Records..."
+        />
+        <button type="button" className="btn btn-primary search-button">
+          <i className="fas fa-search">Search</i>
+        </button>
+      </div>
+
+      <div className="deleted-leads-table-wrapper">
+        <table className="table table-bordered table-hover deleted-leads-table">
+          <thead className="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Client Name</th>
+              <th>Company</th>
+              <th>Designation</th>
+              <th>Assigned From</th>
+              <th>Assigned To</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Meeting Type</th>
+              <th>Deleted At</th> 
+              <th>Deleted By</th> 
+              <th>Actions</th> 
+            </tr>
+          </thead>
+          <tbody className="scrollable-tbody">
+            {filteredDeletedLeads.map((lead) => (
+              <tr key={lead.id}>
+                <td>{lead.id}</td>
+                <td>{lead.client_name}</td>
+                <td>{lead.company}</td>
+                <td>{lead.designation}</td>
+                <td>{lead.assigned_from}</td>
+                <td>{lead.assigned_to}</td>
+                <td>
+                  {lead.priority ? (
+                    lead.priority.toLowerCase() === "high" ? (
+                      <button className="btn btn-danger">
+                        {lead.priority}
+                      </button>
+                    ) : lead.priority.toLowerCase() === "mid" ? (
+                      <button className="btn btn-warning">
+                        {lead.priority}
+                      </button>
+                    ) : lead.priority.toLowerCase() === "low" ? (
+                      <button className="btn btn-success">
+                        {lead.priority}
+                      </button>
+                    ) : (
+                      lead.priority
+                    )
+                  ) : (
+                    "N/A"
+                  )}
+                </td>
+                <td>{lead.status}</td>
+                <td>{lead.meeting_type}</td>
+                <td>
+                  {lead.deleted_at
+                    ? new Date(lead.deleted_at).toLocaleDateString()
+                    : "N/A"}
+                </td>
+                <td>{lead.deleted_by || "N/A"}</td>
+                <td>
+                  <button
+                    className="btn btn-info btn-sm"
+                    onClick={() => viewDeletedLead(lead.id)}
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default DeletedRecordsTable;

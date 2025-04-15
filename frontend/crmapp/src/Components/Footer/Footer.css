@@ -1,0 +1,87 @@
+/* .footer {
+  width: 100%;
+  height: 260px;
+  background-color: #8458b3;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  list-style: none;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+}
+
+.footer_links {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.footer_links_div {
+  padding: 10px;
+  width: 50%;
+  list-style: none;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding: 5px 0;
+}
+
+.footer-link span {
+  cursor: pointer;
+}
+
+.footer-link span:hover {
+  text-decoration: underline;
+  opacity: 0.7; 
+} */
+
+.footer {
+  background-color: #8458B3; /* Or your preferred background color */
+  padding: 35px 0; /* Adjust padding as needed */
+  text-align: center; /* Center the content */
+  width: 100%;
+  height: 265px;
+  position: relative; /* Fix the footer to the bottom */
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box; /* Include padding in width */
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.footer_links {
+  display: flex;
+  justify-content: space-around; /* Distribute links evenly */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.footer_links_div {
+  display: flex;
+  flex-direction: column; /* Stack links vertically */
+  align-items: center; /* Center links horizontally */
+  margin: 10px; /* Add some spacing between link groups */
+}
+
+.footer-link {
+  color: #333; /* Or your preferred link color */
+  text-decoration: none;
+  margin: 5px 0; /* Add spacing between links */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.footer-link:hover {
+  color: #007bff; /* Or your preferred hover color */
+}
+
+.footer_links_div h4 {
+    margin-bottom: 10px;
+}
+
+.footer_links_div img {
+    margin-bottom: 10px;
+}

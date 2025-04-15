@@ -1,0 +1,89 @@
+.deleted-leads-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 1210px;
+    margin: 100px 0 100px 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+  }
+  
+  .deleted-leads-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .deleted-leads-text {
+    font-size: 34px;
+    font-weight: bold;
+  }
+  
+  .deleted-leads-search-bar {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .deleted-leads-search-bar .form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .deleted-leads-search-bar .search-button {
+    width: 10%;
+  }
+  
+  .deleted-leads-table-wrapper {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto; 
+    border: 1px solid #dee2e6;
+  }
+  
+  .deleted-leads-table {
+    width: auto;
+    min-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; 
+  }
+  
+  .deleted-leads-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .deleted-leads-table .thead-dark th {
+    background: #343a40;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    white-space: nowrap;
+  }
+  
+  .deleted-leads-table td,
+  .deleted-leads-table th {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 8px;
+    max-width: none;
+  }
+  
+  .deleted-leads-table .scrollable-tbody tr {
+    background-color: #fff;
+  }
+  
+  .deleted-leads-table .btn-sm {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .deleted-leads-table .ml-2 {
+    margin-left: 0.5rem;
+  }

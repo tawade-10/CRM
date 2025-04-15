@@ -1,0 +1,66 @@
+/* LeadsDetails.css */
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500");
+
+body {
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+.leads-details {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+}
+
+.right-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #2f4050;
+}
+
+.footer {
+  background-color: #8458B3;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.right-content {
+  padding: 20px;
+}
+
+.dashboardBoxWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+.dashboardBoxWrapper .dashboardBox {
+  width: calc(50% - 7.5px);
+  height: 250px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.leads-detail-grid-section .records-table{
+  margin-left: 20px;
+}
