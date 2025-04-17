@@ -4,6 +4,7 @@ import Connections from "./Components/Connections/Connections";
 import Customers from "./Components/Customers/CustomersMain";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import DeletedRecords from "./Components/DeletedRecords/DeletedRecords";
+import EditProfile from "./Components/EditProfile/EditProfileMain/EditProfileMain";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import LeadsDetails from "./Components/LeadsDetails/LeadsDetails";
@@ -16,7 +17,6 @@ import Registration from "./Components/Registration/Registration";
 import Reports from "./Components/Reports/Reports";
 import SideBar from "./Components/SideBar/SideBar";
 import Users from "./Components/Users/Users";
-import Edit
 import VerifyOtp from "./Components/VerifyOtp/VerifyOtp";
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
       <Users />
       <Reports />
       <Dashboard />
-      <EditProfile/>
+      <EditProfile />
       <Footer />
     </div>
   );

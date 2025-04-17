@@ -7,6 +7,8 @@ const ConnectionsTable = () => {
   const [leads, setLeads] = useState([]);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [filteredConnections, setFilteredConnections] = useState([]);
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
   useEffect(() => {
     fetchConnections();
@@ -16,6 +18,7 @@ const ConnectionsTable = () => {
     listLeads()
       .then((response) => {
         setLeads(response.data);
+        setFilteredConnections(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -30,53 +33,48 @@ const ConnectionsTable = () => {
     setSearch(e.target.value);
   };
 
-  const filteredConnections = leads.filter((connection) => {
-    const searchFields = [
-      connection.client_name,
-      connection.company,
-      connection.phone,
-      connection.email,
-      connection.follow_up,
-      connection.comments,
-      String(connection.id),
-    ];
-    return searchFields.some((field) =>
-      String(field).toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  const handleSearchClick = () => {
+    const results = leads.filter((connection) => {
+      const searchFields = [
+        connection.client_name,
+        connection.company,
+        connection.phone,
+        connection.email,
+        connection.follow_up,
+        connection.comments,
+        String(connection.id),
+      ];
+      return searchFields.some((field) =>
+        String(field).toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setFilteredConnections(results);
+    setSearchPerformed(true);
+  };
 
   return (
     <div className="customers-container">
-      {" "}
-      {/* Use customers-container */}
       <div className="customers-header">
-        <p className="customers-text">Connections</p> {/* Use customers-text */}
+        <p className="customers-text">Connections</p>
       </div>
-      {/* Search Bar */}
       <div className="search-bar">
-        {" "}
-        {/* Use search-bar */}
         <input
           type="search"
           className="form-control"
           value={search}
           onChange={handleSearchChange}
         />
-        <button type="button" className="btn btn-primary search-button">
-          {" "}
-          {/* Use search-button */}
+        <button
+          type="button"
+          className="btn btn-primary search-button"
+          onClick={handleSearchClick}
+        >
           <i className="fas fa-search">Search</i>
         </button>
       </div>
       <div className="table-wrapper">
-        {" "}
-        {/* Use table-wrapper */}
         <table className="table table-bordered table-hover customers-table">
-          {" "}
-          {/* Use customers-table */}
           <thead className="thead-dark">
-            {" "}
-            {/* Use thead-dark */}
             <tr>
               <th>ID</th>
               <th>Client Name</th>
@@ -89,10 +87,36 @@ const ConnectionsTable = () => {
             </tr>
           </thead>
           <tbody className="scrollable-tbody">
-            {" "}
-            {/* Use scrollable-tbody */}
-            {filteredConnections.length > 0 ? (
-              filteredConnections.map((connection) => (
+            {searchPerformed ? (
+              filteredConnections.length > 0 ? (
+                filteredConnections.map((connection) => (
+                  <tr key={connection.id}>
+                    <td>{connection.id}</td>
+                    <td>{connection.client_name}</td>
+                    <td>{connection.company}</td>
+                    <td>{connection.phone}</td>
+                    <td>{connection.email}</td>
+                    <td>{connection.follow_up}</td>
+                    <td>{connection.comments}</td>
+                    <td>
+                      <button
+                        className="btn btn-primary btn-sm"
+                        onClick={() => updateConnection(connection.id)}
+                      >
+                        Update
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="8" className="text-center">
+                    No Connections Found
+                  </td>
+                </tr>
+              )
+            ) : (
+              leads.map((connection) => (
                 <tr key={connection.id}>
                   <td>{connection.id}</td>
                   <td>{connection.client_name}</td>
@@ -111,14 +135,6 @@ const ConnectionsTable = () => {
                   </td>
                 </tr>
               ))
-            ) : (
-              <tr>
-                <td colSpan="8" className="text-center">
-                  {" "}
-                  {/* Use text-center */}
-                  No Connections Found
-                </td>
-              </tr>
             )}
           </tbody>
         </table>
