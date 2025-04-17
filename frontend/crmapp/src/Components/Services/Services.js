@@ -32,3 +32,17 @@ export const updateMeeting = (id, meeting) =>
 export const deleteMeeting = (id) =>
   axios.delete(MEETING_API_BASE_URL + "/" + id);
   
+const TICKETS_API_BASE_URL = "http://localhost:8080/api/tickets";
+
+export const createTicket = (ticket) =>
+  axios.post(TICKETS_API_BASE_URL, ticket);
+
+export const getTicketById = (ticket) =>
+  axios.get(TICKETS_API_BASE_URL + "/" + ticket);
+
+export const updateTicket = (id, ticket) =>
+  axios.put(TICKETS_API_BASE_URL + "/" + id, ticket);
+
+export const deleteTicket = (id) =>
+  axios.delete(TICKETS_API_BASE_URL + "/" + id);
+  

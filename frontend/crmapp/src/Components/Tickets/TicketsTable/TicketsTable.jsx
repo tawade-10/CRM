@@ -1,111 +1,28 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { deleteTicket, listTickets } from "../../Services/Services";
 import "./TicketsTable.css";
 
+const TICKETS_API_BASE_URL = "http://localhost:8080/api/tickets";
+
 const listTickets = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return {
-    data: [
-      //   {
-      //     id: 1,
-      //     title: "Issue with login",
-      //     description: "Users are unable to log in to the system.",
-      //     status: "Open",
-      //     priority: "High",
-      //     created_at: "2024-07-24",
-      //     assigned_to: "John Doe",
-      //   },
-      //   {
-      //     id: 2,
-      //     title: "Forgot Password",
-      //     description: "Users are unable to reset the password.",
-      //     status: "In Progress",
-      //     priority: "Medium",
-      //     created_at: "2024-07-24",
-      //     assigned_to: "Jane Smith",
-      //   },
-      //   {
-      //     id: 3,
-      //     title: "Payment Failed",
-      //     description: "Some users are reporting payment failures.",
-      //     status: "Closed",
-      //     priority: "High",
-      //     created_at: "2024-07-23",
-      //     assigned_to: "Mike Johnson",
-      //   },
-      //   {
-      //     id: 4,
-      //     title: "UI Issue",
-      //     description: "UI is broken",
-      //     status: "Open",
-      //     priority: "Low",
-      //     created_at: "2024-07-23",
-      //     assigned_to: "John Doe",
-      //   },
-      //   {
-      //     id: 5,
-      //     title: "API Error",
-      //     description: "API is returning 500.",
-      //     status: "In Progress",
-      //     priority: "High",
-      //     created_at: "2024-07-22",
-      //     assigned_to: "Jane Smith",
-      //   },
-      //   {
-      //     id: 6,
-      //     title: "Database Connection",
-      //     description: "Database connection is failing.",
-      //     status: "Closed",
-      //     priority: "High",
-      //     created_at: "2024-07-22",
-      //     assigned_to: "Mike Johnson",
-      //   },
-      //   {
-      //     id: 7,
-      //     title: "Mobile App Crash",
-      //     description: "Mobile app crashes on startup",
-      //     status: "Open",
-      //     priority: "High",
-      //     created_at: "2024-07-21",
-      //     assigned_to: "John Doe",
-      //   },
-      //   {
-      //     id: 8,
-      //     title: "Email Delivery Delay",
-      //     description: "Emails are delayed",
-      //     status: "In Progress",
-      //     priority: "Medium",
-      //     created_at: "2024-07-21",
-      //     assigned_to: "Jane Smith",
-      //   },
-      //   {
-      //     id: 9,
-      //     title: "Report Generation Error",
-      //     description: "Reports are not generating correctly",
-      //     status: "Closed",
-      //     priority: "Medium",
-      //     created_at: "2024-07-20",
-      //     assigned_to: "Mike Johnson",
-      //   },
-      //   {
-      //     id: 10,
-      //     title: "Image Upload Issue",
-      //     description: "Users cannot upload images",
-      //     status: "Open",
-      //     priority: "Low",
-      //     created_at: "2024-07-20",
-      //     assigned_to: "John Doe",
-      //   },
-    ],
-  };
+  try {
+    const response = await axios.get(TICKETS_API_BASE_URL);
+    return response;
+  } catch (error) {
+    console.error("Error fetching tickets:", error);
+    throw error;
+  }
 };
 
-const deleteTicket = async (id) => {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  console.log("Deleting ticket:", id);
-  return { success: true };
+const deleteTicketApi = async (id) => {
+  try {
+    const response = await axios.delete(`${TICKETS_API_BASE_URL}/${id}`);
+    return response;
+  } catch (error) {
+    console.error("Error deleting ticket:", error);
+    throw error;
+  }
 };
 
 const TicketsTable = () => {
@@ -114,12 +31,12 @@ const TicketsTable = () => {
   const navigator = useNavigate();
 
   function UpdateTicket(id) {
-    navigator(`/update-ticket/${id}`); 
+    navigator(`/update-ticket/${id}`);
   }
 
   const handleDeleteTicket = (id) => {
     if (window.confirm("Are you sure you want to delete this ticket?")) {
-      deleteTicket(id)
+      deleteTicketApi(id)
         .then((response) => {
           console.log("Ticket deleted:", response);
           fetchTickets();
@@ -155,10 +72,9 @@ const TicketsTable = () => {
       ticket.company_name,
       ticket.created_by,
       ticket.created_at,
-      ticket.assigned_to,
-      ticket.due_date,
+      ticket.assign_to,
+      ticket.due_date_time,
       ticket.status,
-      ticket.actions
     ];
     return searchFields.some((field) =>
       String(field).toLowerCase().includes(search.toLowerCase())
@@ -210,12 +126,12 @@ const TicketsTable = () => {
                 <td>
                   <a href={`/ticket-details/${ticket.id}`}>{ticket.id}</a>
                 </td>
-                <td>{ticket.client_name}</td>
-                <td>{ticket.company_name}</td>
+                <td>{ticket.customer}</td>
+                <td>{ticket.company}</td>
                 <td>{ticket.created_by}</td>
-                <td>{ticket.created_at}</td>
-                <td>{ticket.assigned_to}</td>
                 <td>{ticket.due_date}</td>
+                <td>{ticket.assign_to}</td>
+                <td>{ticket.due_date_time}</td>
                 <td>{ticket.status}</td>
                 <td>
                   <button
