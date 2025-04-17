@@ -7,7 +7,8 @@
 
 .add-tickets-form-card {
   width: 1200px;
-  margin-top: 100px;
+  margin-top: 80px;
+  margin-left: 10px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -28,10 +29,30 @@
   flex-direction: column;
 }
 
-.tickets-form-grid {
+.form-section {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.form-section-heading {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-section-grid {
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.form-section-grid.one-column {
+  grid-template-columns: 1fr;
 }
 
 .tickets-form-group {
@@ -70,6 +91,12 @@
   min-height: 100px;
 }
 
+.underline-separator {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
 .tickets-submit-button {
   padding: 12px 15px;
   background-color: #007bff;
@@ -87,7 +114,7 @@
 }
 
 @media (max-width: 600px) {
-  .tickets-form-grid {
+  .form-section-grid {
     grid-template-columns: 1fr;
   }
 }

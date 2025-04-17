@@ -16,7 +16,9 @@ public class MeetingRecordsMapper {
 				meetingRecords.getAttendee(),
 				meetingRecords.getMeeting_location(),
 				meetingRecords.getCreated(),
-				meetingRecords.getFollow_up()
+				meetingRecords.getFollow_up(),
+				meetingRecords.getAssigned_to(),
+				meetingRecords.getLead_id()
 				);
 	}
 	
@@ -31,7 +33,9 @@ public class MeetingRecordsMapper {
 				meetingRecordsDto.getAttendee(),
 				meetingRecordsDto.getMeeting_location(),
 				meetingRecordsDto.getCreated(),
-				meetingRecordsDto.getFollow_up()
+				meetingRecordsDto.getFollow_up(),
+				meetingRecordsDto.getAssigned_to(),
+				meetingRecordsDto.getLead_id()
 				);
 	}
 }

@@ -16,6 +16,7 @@ export const sendPasswordResetOtp = (email) =>
 export const verifyPasswordResetOtp = (email, otp) =>
   axios.post("http://localhost:8080/forgot/verify-otp", { email, otp });
 
+
 const MEETING_API_BASE_URL = "http://localhost:8080/api/meeting_records";
 
 export const getAllMeetings = () => axios.get(MEETING_API_BASE_URL);
@@ -31,7 +32,8 @@ export const updateMeeting = (id, meeting) =>
 
 export const deleteMeeting = (id) =>
   axios.delete(MEETING_API_BASE_URL + "/" + id);
-  
+
+
 const TICKETS_API_BASE_URL = "http://localhost:8080/api/tickets";
 
 export const createTicket = (ticket) =>

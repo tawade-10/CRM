@@ -13,6 +13,7 @@ import Tickets from "./Components/Tickets/TicketsMain/TicketsMain";
 // import UpdateLeads from "./Components/UpdateLeads/UpdateLeads";
 import AddMeeting from "./Components/AddMeeting/AddMeetingMain/AddMeetingMain";
 import DeletedRecords from "./Components/DeletedRecords/DeletedRecordsMain/DeletedRecordsMain";
+import EditProfile from "./Components/EditProfile/EditProfileMain/EditProfileMain";
 import AddLeadsMain from "./Components/Leads/AddLeadsMain/AddLeadsMain";
 import UpdateLeads from "./Components/Leads/UpdateLeadsMain/UpdateLeadsMain";
 import MasterDatabase from "./Components/MasterDatabase/MasterDatabaseMain/MasterDatabaseMain";
@@ -155,6 +156,14 @@ root.render(
           element={
             <ProtectedRoutes>
               <LeadsDetails />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <ProtectedRoutes>
+              <EditProfile />
             </ProtectedRoutes>
           }
         />

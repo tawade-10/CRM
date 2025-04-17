@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MeetingRecordsTable from "../../../MeetingRecords/MeetingRecordsTable/MeetingRecordsTable";
 import { getLead } from "../../../Services/Services";
@@ -7,6 +7,7 @@ import "./LeadsDetailsForm.css";
 const LeadsDetailsForm = () => {
   const { id } = useParams();
   const [lead, setLead] = useState(null);
+  const [meetingCount, setMeetingCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +31,14 @@ const LeadsDetailsForm = () => {
       .catch((error) => {
         console.error("Error fetching lead details:", error);
       });
+  };
+
+  const refreshMeetingRecords = useCallback(() => {
+    setMeetingCount((prevCount) => prevCount + 1);
+  }, []);
+
+  const handleAddMeetingClick = () => {
+    navigate(`/add-meeting?leadId=${id}`); 
   };
 
   if (!lead) {
@@ -104,7 +113,13 @@ const LeadsDetailsForm = () => {
         </div>
       </div>
       <div>
-        <MeetingRecordsTable showAddMeetingButton={true} leadId={id} />
+        <MeetingRecordsTable
+          showAddMeetingButton={true}
+          leadId={id}
+          onMeetingAdded={refreshMeetingRecords}
+          updateMeetingCount={() => {}}
+          key={meetingCount}
+        />
       </div>
     </div>
   );

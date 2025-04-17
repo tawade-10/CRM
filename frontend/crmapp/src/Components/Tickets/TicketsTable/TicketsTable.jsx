@@ -69,7 +69,7 @@ const TicketsTable = () => {
     const searchFields = [
       String(ticket.id),
       ticket.client_name,
-      ticket.company_name,
+      ticket.company,
       ticket.created_by,
       ticket.created_at,
       ticket.assign_to,

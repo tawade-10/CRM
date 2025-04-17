@@ -7,38 +7,39 @@ const MeetingRecordsTable = ({
   showAddMeetingButton,
   leadId,
   updateMeetingCount,
+  onMeetingAdded,
 }) => {
   const [meetingRecords, setMeetingRecords] = useState([]);
   const [search, setSearch] = useState("");
   const navigator = useNavigate();
-  const [notifications, setNotifications] = useState([]); // State for notifications
+  const [notifications, setNotifications] = useState([]); 
 
   function handleUpdateRecord(id) {
-    navigator(`/update-record/${id}`);
+    navigator(`/update-meeting/${id}`);
   }
 
-  const handleViewLead = (companyName) => {
-    navigator(`/view-lead/${companyName}`);
+  const handleViewLead = (id) => {
+    navigator(`/lead-details/${id}`);
   };
 
   useEffect(() => {
     fetchMeetingRecords();
-  }, [leadId]); // Add leadId as a dependency
+  }, [leadId, onMeetingAdded]);
 
   const fetchMeetingRecords = async () => {
-    // Make fetchMeetingRecords async to use await
     try {
-      const response = await getAllMeetings(); // Await the API call
+      const response = await getAllMeetings();
       let filteredMeetings = response.data;
       if (leadId) {
-        // Filter meetings by leadId
         filteredMeetings = response.data.filter(
           (record) => record.lead_id === parseInt(leadId)
         );
       }
       setMeetingRecords(filteredMeetings);
-      updateMeetingCount(filteredMeetings.length);
-      generateNotifications(filteredMeetings); // Generate notifications after fetching
+      if (updateMeetingCount) {
+        updateMeetingCount(filteredMeetings.length);
+      }
+      generateNotifications(filteredMeetings);
     } catch (error) {
       console.log(error);
     }
@@ -68,10 +69,9 @@ const MeetingRecordsTable = ({
   });
 
   const handleAddMeeting = () => {
-    navigator(`/add-meeting?leadId=${leadId}`); 
+    navigator(`/add-meeting?leadId=${leadId}`);
   };
 
-  // Function to generate notifications
   const generateNotifications = (meetings) => {
     const today = new Date().toISOString().split("T")[0];
     const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1))
@@ -82,7 +82,7 @@ const MeetingRecordsTable = ({
     meetings.forEach((meeting) => {
       const meetingDate = meeting.created
         ? meeting.created.split("T")[0]
-        : null; // Use created or follow_up
+        : null;
 
       if (meetingDate === today) {
         generatedNotifications.push(
@@ -165,7 +165,7 @@ const MeetingRecordsTable = ({
                   </button>
                   <button
                     className="btn btn-warning btn-sm records-view-lead-button ml-2"
-                    onClick={() => handleViewLead(record.company)}
+                    onClick={() => handleViewLead(record.id)}
                   >
                     View Lead
                   </button>
@@ -181,7 +181,7 @@ const MeetingRecordsTable = ({
         </button>
       )}
 
-      {notifications.length > 0 && (
+      {/* {notifications.length > 0 && (
         <div className="notification-modal">
           <div className="notification-modal-header">
             <h2 className="notification-modal-title">Notifications</h2>
@@ -194,7 +194,7 @@ const MeetingRecordsTable = ({
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

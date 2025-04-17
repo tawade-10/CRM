@@ -9,7 +9,7 @@ const CustomersTable = () => {
   const navigator = useNavigate();
 
   function UpdateCustomer(id) {
-    navigator(`/update-customer/${id}`);
+    navigator(`/update-leads/${id}`);
   }
 
   useEffect(() => {

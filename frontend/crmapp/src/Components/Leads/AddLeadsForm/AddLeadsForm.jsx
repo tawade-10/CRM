@@ -20,6 +20,7 @@ const AddLeadsForm = () => {
   const [meetingType, setMeetingType] = useState("");
   const [value, setValue] = useState("");
   const [comments, setComments] = useState("");
+  const [leadSource, setLeadSource] = useState("");
   const [eventDetails, setEventDetails] = useState("");
 
   const { id } = useParams();
@@ -41,6 +42,7 @@ const AddLeadsForm = () => {
     meetingType: "",
     value: "",
     comments: "",
+    leadSource: "",
     eventDetails: "",
   });
 
@@ -66,6 +68,7 @@ const AddLeadsForm = () => {
           setMeetingType(response.data.meeting_type);
           setValue(response.data.value);
           setComments(response.data.comments);
+          setLeadSource(response.data.leadSource);
           setEventDetails(response.data.event_details);
         })
         .catch((error) => {
@@ -125,6 +128,9 @@ const AddLeadsForm = () => {
       case "comments":
         setComments(value);
         break;
+      case "lead_source":
+        setLeadSource(value);
+        break;
       case "eventDetails":
         setEventDetails(value);
         break;
@@ -154,6 +160,7 @@ const AddLeadsForm = () => {
         meeting_type: meetingType,
         value,
         comments,
+        lead_source: leadSource,
         event_details: eventDetails,
       };
 
@@ -202,11 +209,12 @@ const AddLeadsForm = () => {
       "meetingType",
       "value",
       "comments",
+      "leadSource",
       "eventDetails",
     ];
 
     requiredFields.forEach((field) => {
-      if (!eval(field).trim()) {
+      if (!field.trim()) {
         errorsCopy[field] = `${
           field.charAt(0).toUpperCase() + field.slice(1)
         } is required`;
@@ -500,6 +508,25 @@ const AddLeadsForm = () => {
                 />
                 {errors.eventDetails && (
                   <div className="invalid-feedback">{errors.eventDetails}</div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="leadSource" className="form-label">
+                  Lead Source:
+                </label>
+                <input
+                  type="text"
+                  id="leadSource"
+                  name="leadSource"
+                  value={leadSource}
+                  className={`form-control ${
+                    errors.leadSource ? "is-invalid" : ""
+                  }`}
+                  onChange={handleChange}
+                />
+                {errors.leadSource && (
+                  <div className="invalid-feedback">{errors.leadSource}</div>
                 )}
               </div>
 

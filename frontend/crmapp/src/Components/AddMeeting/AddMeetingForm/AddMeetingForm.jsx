@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"; // Import useSearchParams
 import {
   createMeeting,
   getMeetingById,
@@ -20,6 +20,8 @@ const AddMeetingForm = () => {
   const [assigned_to, setAssignedTo] = useState("");
 
   const { id } = useParams();
+  const [searchParams] = useSearchParams(); // Get query parameters
+  const leadIdFromParams = searchParams.get("leadId"); // Extract leadId
 
   const [errors, setErrors] = useState({
     company: "",
@@ -112,6 +114,11 @@ const AddMeetingForm = () => {
         assigned_to,
       };
 
+      // If leadId is available in the URL, add it to the meeting data
+      if (leadIdFromParams) {
+        meetingData.lead_id = parseInt(leadIdFromParams);
+      }
+
       console.log("Sending meeting data:", meetingData);
 
       try {
@@ -123,7 +130,12 @@ const AddMeetingForm = () => {
           response = await createMeeting(meetingData);
           console.log("Created meeting data:", response.data);
         }
-        navigator("/meeting-records");
+        // Navigate back to the lead details page after adding/updating
+        if (leadIdFromParams) {
+          navigator(`/view-lead/${leadIdFromParams}`);
+        } else {
+          navigator("/meeting-records");
+        }
       } catch (error) {
         console.error("Error saving/updating meeting:", error);
       }
@@ -150,7 +162,6 @@ const AddMeetingForm = () => {
     requiredFields.forEach((field) => {
       const fieldValue = eval(field);
       if (!fieldValue || !fieldValue.trim()) {
-        // Check if it's null or empty
         errorsCopy[field] = `${
           field.charAt(0).toUpperCase() +
           field

@@ -6,6 +6,7 @@ import "./LeadsTable.css";
 const LeadsTable = () => {
   const [leads, setLeads] = useState([]);
   const [search, setSearch] = useState("");
+  const [filteredLeads, setFilteredLeads] = useState([]);
   const navigator = useNavigate();
 
   function UpdateLeads(id) {
@@ -34,6 +35,8 @@ const LeadsTable = () => {
     listLeads()
       .then((response) => {
         setLeads(response.data);
+        // Initially, don't filter until the search button is clicked
+        setFilteredLeads(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -44,22 +47,25 @@ const LeadsTable = () => {
     setSearch(e.target.value);
   };
 
-  const filteredLeads = leads.filter((lead) => {
-    const searchFields = [
-      lead.client_name,
-      lead.company,
-      lead.designation,
-      lead.assigned_from,
-      lead.assigned_to,
-      lead.priority,
-      lead.status,
-      lead.meeting_type,
-      String(lead.id),
-    ];
-    return searchFields.some((field) =>
-      String(field).toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  const handleSearchClick = () => {
+    const results = leads.filter((lead) => {
+      const searchFields = [
+        lead.client_name,
+        lead.company,
+        lead.designation,
+        lead.assigned_from,
+        lead.assigned_to,
+        lead.priority,
+        lead.status,
+        lead.meeting_type,
+        String(lead.id),
+      ];
+      return searchFields.some((field) =>
+        String(field).toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setFilteredLeads(results);
+  };
 
   return (
     <div className="leads-container">
@@ -79,7 +85,11 @@ const LeadsTable = () => {
           value={search}
           onChange={handleSearchChange}
         />
-        <button type="button" className="btn btn-primary search-button">
+        <button
+          type="button"
+          className="btn btn-primary search-button"
+          onClick={handleSearchClick}
+        >
           <i className="fas fa-search">Search</i>
         </button>
       </div>

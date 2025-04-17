@@ -16,6 +16,7 @@ import Registration from "./Components/Registration/Registration";
 import Reports from "./Components/Reports/Reports";
 import SideBar from "./Components/SideBar/SideBar";
 import Users from "./Components/Users/Users";
+import Edit
 import VerifyOtp from "./Components/VerifyOtp/VerifyOtp";
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
       <Users />
       <Reports />
       <Dashboard />
+      <EditProfile/>
       <Footer />
     </div>
   );

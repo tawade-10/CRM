@@ -185,7 +185,7 @@ const AddTicketForm = () => {
     ];
 
     requiredFields.forEach((field) => {
-      if (!eval(field)?.trim()) {
+      if (!field?.trim()) {
         newErrors[field] = `${
           field.charAt(0).toUpperCase() + field.slice(1)
         } is required`;
@@ -225,8 +225,10 @@ const AddTicketForm = () => {
                 {errors.customer && (
                   <div className="invalid-feedback">{errors.customer}</div>
                 )}
+                <br />
+                <strong>Contact Information</strong>
+                <hr />
               </div>
-
               <div className="tickets-form-group full-width">
                 <label htmlFor="company" className="tickets-form-label">
                   Company:
@@ -319,6 +321,9 @@ const AddTicketForm = () => {
                 {errors.assign_to && (
                   <div className="invalid-feedback">{errors.assign_to}</div>
                 )}
+                <br />
+                <strong>Ticket Information</strong>
+                <hr />
               </div>
 
               <div className="tickets-form-group">
@@ -403,6 +408,9 @@ const AddTicketForm = () => {
                 {errors.due_date_time && (
                   <div className="invalid-feedback">{errors.due_date_time}</div>
                 )}
+                <br />
+                <strong>Additional Information</strong>
+                <hr />
               </div>
 
               <div className="tickets-form-group">

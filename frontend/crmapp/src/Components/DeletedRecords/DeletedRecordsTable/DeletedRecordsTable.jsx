@@ -8,7 +8,6 @@ const DeletedRecordsTable = () => {
   const [search, setSearch] = useState("");
   const navigator = useNavigate();
 
-  // Function to navigate to a "view deleted lead" page if needed
   const viewDeletedLead = (id) => {
     navigator(`/deleted-leads/${id}`);
   };
@@ -18,7 +17,7 @@ const DeletedRecordsTable = () => {
   }, []);
 
   const fetchDeletedLeads = () => {
-    deleteLeads() // Call the correct service to fetch deleted leads
+    deleteLeads() 
       .then((response) => {
         setDeletedLeads(response.data);
       })
@@ -42,8 +41,8 @@ const DeletedRecordsTable = () => {
       lead.status,
       lead.meeting_type,
       String(lead.id),
-      lead.deleted_at, // Assuming the deleted timestamp is available
-      lead.deleted_by, // Assuming information about who deleted it is available
+      lead.deleted_at, 
+      lead.deleted_by, 
     ];
     return searchFields.some((field) =>
       String(field).toLowerCase().includes(search.toLowerCase())

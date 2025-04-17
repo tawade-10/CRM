@@ -1,13 +1,23 @@
-package com.tecstaqcrm.CRM.dto;
+	package com.tecstaqcrm.CRM.entity;
 
 import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MeetingRecordsDto {
+@Entity
+@Table(name="meeting_records")
+public class MeetingRecords {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String company;
     private String partner_products;
     private String company_products;
@@ -17,13 +27,14 @@ public class MeetingRecordsDto {
     private String meeting_location;
     private LocalDate created;
     private LocalDate follow_up;
-
-    public MeetingRecordsDto() {
+    private String assigned_to;
+    private Long lead_id;
+    
+    public MeetingRecords() {
     }
 
-	public MeetingRecordsDto(Long id, String company, String partner_products, String company_products,
-			String conclusion, String speaker, String attendee, String meeting_location, LocalDate created,
-			LocalDate follow_up) {
+	public MeetingRecords(Long id, String company, String partner_products, String company_products, String conclusion,
+			String speaker, String attendee, String meeting_location, LocalDate created, LocalDate follow_up, String assigned_to, Long lead_id) {
 		super();
 		this.id = id;
 		this.company = company;
@@ -35,6 +46,8 @@ public class MeetingRecordsDto {
 		this.meeting_location = meeting_location;
 		this.created = created;
 		this.follow_up = follow_up;
+		this.assigned_to = assigned_to;
+		this.lead_id = lead_id;
 	}
 
 	public Long getId() {
@@ -117,5 +130,21 @@ public class MeetingRecordsDto {
 		this.follow_up = follow_up;
 	}
 
-   
+	public String getAssigned_to() {
+		return assigned_to;
+	}
+
+	public void setAssigned_to(String assigned_to) {
+		this.assigned_to = assigned_to;
+	}
+
+	public Long getLead_id() {
+		return lead_id;
+	}
+
+	public void setLead_id(Long lead_id) {
+		this.lead_id = lead_id;
+	}
+	
+	
 }
