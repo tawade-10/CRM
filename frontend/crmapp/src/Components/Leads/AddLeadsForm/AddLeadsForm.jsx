@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createLead, getLead, UpdateLeads } from "../../Services/Services";
-import "./AddLeadsForm.css";
+import "./AddLeadsForm.css"; // Import the CSS file
 
 const AddLeadsForm = () => {
   const [company, setCompany] = useState("");
@@ -128,7 +128,7 @@ const AddLeadsForm = () => {
       case "comments":
         setComments(value);
         break;
-      case "lead_source":
+      case "leadSource":
         setLeadSource(value);
         break;
       case "eventDetails":
@@ -229,13 +229,11 @@ const AddLeadsForm = () => {
   }
 
   return (
-    <div className="add-leads-form-container">
-      <div className="add-leads-form-card">
-        <h2 className="add-leads-form-title">
-          {id ? "Update Lead" : "Add New Lead"}
-        </h2>
-        <div className="add-leads-form-body">
-          <form onSubmit={saveOrUpdateLead} className="leads-form">
+    <div className="add-leads-page">
+      <div className="form-container">
+        <h2 className="form-title">{id ? "Update Lead" : "Add New Lead"}</h2>
+        <div className="form-body">
+          <form onSubmit={saveOrUpdateLead} className="main-form">
             <div className="form-grid">
               <div className="form-group">
                 <label htmlFor="clientName" className="form-label">

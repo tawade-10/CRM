@@ -143,7 +143,7 @@ const UpdateLeadsForm = () => {
   };
 
   return (
-    <div className="container">
+    <div className="update-leads-container">
       <div className="row">
         <div className="card">
           <h2 className="text-center">{id ? "Update Lead" : "Add Lead"}</h2>

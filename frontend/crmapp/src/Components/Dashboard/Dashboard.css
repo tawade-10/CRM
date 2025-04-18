@@ -22,20 +22,20 @@ body {
 
 .dashboard {
   display: flex;
-  flex-direction: column; /* Stack header, main, footer vertically */
+  flex-direction: column; 
   min-height: 100vh;
   width: 100%;
 }
 
 .main-content {
-  display: flex; /* Place right-content and sidebar side by side */
+  display: flex; 
   flex: 1;
-  align-items: stretch; /* Allow main-content to grow and fill available space */
+  align-items: stretch; 
 }
 
 .right-content {
-  flex: 1; /* Allow right-content to grow and take up most space */
-  padding: 20px; /* Add padding for content */
+  flex: 1; 
+  padding: 20px; 
 }
 
 .username{
@@ -49,7 +49,7 @@ body {
   padding: 20px 0;
   text-align: center;
   width: 100%;
-  position: relative; /* change to relative */
+  position: relative; 
   bottom: 0;
   left: 0;
   box-sizing: border-box;

@@ -378,27 +378,33 @@ const AddTicketForm = () => {
               </div>
 
               <div className="tickets-form-group full-width">
-                <label htmlFor="status" className="tickets-form-label">
-                  Status:
-                </label>
-                <input
-                  id="status"
-                  name="status"
-                  value={status}
-                  className="tickets-form-control"
-                  onChange={handleInputChange}
-                />
-                {errors.status && (
-                  <div className="invalid-feedback">{errors.status}</div>
-                )}
-              </div>
+  <label htmlFor="status" className="tickets-form-label">
+    Status:
+  </label>
+  <select
+    id="status"
+    name="status"
+    value={status}
+    className="tickets-form-control"
+    onChange={handleInputChange}
+  >
+    <option value="">Select Status</option>
+    <option value="open">Open</option>
+    <option value="in_progress">In Progress</option>
+    <option value="resolved">Inactive</option>
+    <option value="closed">Closed</option>
+  </select>
+  {errors.status && (
+    <div className="invalid-feedback">{errors.status}</div>
+  )}
+</div>
 
               <div className="tickets-form-group full-width">
                 <label htmlFor="due_date_time" className="tickets-form-label">
                   Due Date & Time:
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
                   id="due_date_time"
                   name="due_date_time"
                   value={due_date_time}

@@ -18,6 +18,7 @@ import AddLeadsMain from "./Components/Leads/AddLeadsMain/AddLeadsMain";
 import UpdateLeads from "./Components/Leads/UpdateLeadsMain/UpdateLeadsMain";
 import MasterDatabase from "./Components/MasterDatabase/MasterDatabaseMain/MasterDatabaseMain";
 import MeetingRecords from "./Components/MeetingRecords/MeetingRecordsMain/MeetingRecordsMain";
+import UpdateMeeting from "./Components/MeetingRecords/UpdateMeeting/UpdateMeetingMain/UpdateMeetingMain";
 import NewPassword from "./Components/NewPassword/NewPasswordMain/NewPasswordMain";
 import PasswordReset from "./Components/PasswordReset/PasswordResetMain/PasswordResetMain";
 import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
@@ -38,7 +39,6 @@ root.render(
         <Route path="/forgot/send-otp" element={<VerifyOtp />} />
         <Route path="/reset-password/new" element={<NewPassword />} />
         <Route path="/" element={<Entry />} />
-        {/* Protected Routes */}
         <Route
           path="/dashboard"
           element={
@@ -88,7 +88,7 @@ root.render(
           }
         />
         <Route
-          path="/add-meeting/"
+          path="/add-meeting"
           element={
             <ProtectedRoutes>
               <AddMeeting />
@@ -105,6 +105,14 @@ root.render(
         />
         <Route
           path="/add-ticket"
+          element={
+            <ProtectedRoutes>
+              <AddTicketMain />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/update-ticket/:id"
           element={
             <ProtectedRoutes>
               <AddTicketMain />
@@ -148,6 +156,14 @@ root.render(
           element={
             <ProtectedRoutes>
               <MasterDatabase />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/update-meeting/:id"
+          element={
+            <ProtectedRoutes>
+              <UpdateMeeting />
             </ProtectedRoutes>
           }
         />

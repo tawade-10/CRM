@@ -12,14 +12,14 @@ const MeetingRecordsTable = ({
   const [meetingRecords, setMeetingRecords] = useState([]);
   const [search, setSearch] = useState("");
   const navigator = useNavigate();
-  const [notifications, setNotifications] = useState([]); 
+  const [notifications, setNotifications] = useState([]);
 
   function handleUpdateRecord(id) {
     navigator(`/update-meeting/${id}`);
   }
 
-  const handleViewLead = (id) => {
-    navigator(`/lead-details/${id}`);
+  const handleViewLead = (leadId) => {
+    navigator(`/lead-details/${leadId}`);
   };
 
   useEffect(() => {
@@ -165,7 +165,7 @@ const MeetingRecordsTable = ({
                   </button>
                   <button
                     className="btn btn-warning btn-sm records-view-lead-button ml-2"
-                    onClick={() => handleViewLead(record.id)}
+                    onClick={() => handleViewLead(record.lead_id)} 
                   >
                     View Lead
                   </button>

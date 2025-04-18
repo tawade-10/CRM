@@ -111,12 +111,11 @@ const Reports = () => {
             </div>
           </div>
 
-          {/* Leads Table (Includes Follow Up) - Similar to ConnectionsTable */}
           <div className="table-container">
             <h3 className="table-title">Leads</h3>
-            <div className="connections-table-scroll-wrapper"> {/* Use the scroll wrapper class */}
-              <table className="connections-table"> {/* Use the connections-table class */}
-                <thead>
+            <div className="connections-table-scroll-wrapper">
+              <table className="connections-table">
+                <thead className="table thead-dark">
                   <tr>
                     <th>ID</th>
                     <th>Client Name</th>
@@ -152,12 +151,11 @@ const Reports = () => {
             </div>
           </div>
 
-          {/* Clients Table (No Follow Up) - Similar to ConnectionsTable */}
           <div className="table-container">
             <h3 className="table-title">Customers</h3>
-            <div className="connections-table-scroll-wrapper"> {/* Use the scroll wrapper class */}
-              <table className="connections-table"> {/* Use the connections-table class */}
-                <thead>
+            <div className="connections-table-scroll-wrapper">
+              <table className="connections-table">
+                <thead className="table thead-dark">
                   <tr>
                     <th>ID</th>
                     <th>Client Name</th>

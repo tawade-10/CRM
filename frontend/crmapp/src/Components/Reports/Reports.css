@@ -165,18 +165,18 @@
   min-width: 700px; /* Adjust based on the number of columns */
 }
 
-.connections-table th,
-.connections-table td {
-  text-align: left;
-  vertical-align: middle;
-  padding: 12px 10px; /* Adjust padding */
-  border-bottom: 1px solid #eee;
-  white-space: nowrap;
-  font-size: 16px;
-  color: #444;
-}
+  .connections-table th,
+  .connections-table td {
+    text-align: left;
+    vertical-align: middle;
+    padding: 12px 10px; 
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #444;
+  }
 
-.connections-table thead th {
+/* .connections-table thead th {
   position: sticky;
   top: 0;
   background-color: #f8f9fa;
@@ -184,7 +184,7 @@
   z-index: 2;
   border-bottom: 2px solid #ccc;
   font-weight: bold;
-}
+} */
 
 .connections-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;

@@ -129,7 +129,7 @@ const TicketsTable = () => {
                 <td>{ticket.customer}</td>
                 <td>{ticket.company}</td>
                 <td>{ticket.created_by}</td>
-                <td>{ticket.due_date}</td>
+                <td>{ticket.created_at}</td>
                 <td>{ticket.assign_to}</td>
                 <td>{ticket.due_date_time}</td>
                 <td>{ticket.status}</td>

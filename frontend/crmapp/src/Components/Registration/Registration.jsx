@@ -1,5 +1,6 @@
 import axios from "axios"; // Import axios
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import "./Registration.css";
@@ -12,7 +13,7 @@ const Registration = () => {
   });
 
   const [data, setData] = useState([]);
-  console.log(registerData);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +25,6 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(registerData);
 
     const { email, username, password } = registerData;
 
@@ -45,18 +45,20 @@ const Registration = () => {
         "tawade_10",
         JSON.stringify([...data, registerData])
       );
-    }
 
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/addUser",
-        registerData
-      );
-      console.log("Registration successful:", response.data);
-      alert("Registration Successful!");
-    } catch (error) {
-      console.error("Registration error:", error);
-      alert("Registration failed. Please try again.");
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/addUser",
+          registerData
+        );
+        console.log("Registration successful:", response.data);
+        alert("Registration Successful!");
+        localStorage.setItem("loggedInUsername", username); // Store username
+        navigate("/dashboard"); // Redirect to dashboard after successful registration
+      } catch (error) {
+        console.error("Registration error:", error);
+        alert("Registration failed. Please try again.");
+      }
     }
   };
 
@@ -69,7 +71,7 @@ const Registration = () => {
             <h1 className="registration-title">Registration</h1>
             <hr />
 
-            <form>
+            <form onSubmit={handleSubmit}> {/* Changed form tag to use onSubmit */}
               <div className="registration-field">
                 <label htmlFor="email">Enter Email</label>
                 <input
@@ -106,11 +108,7 @@ const Registration = () => {
                 />
               </div>
               <br />
-              <button
-                onClick={handleSubmit}
-                className="registration-btn"
-                type="submit"
-              >
+              <button className="registration-btn" type="submit">
                 Register
               </button>
               <div className="login-page">

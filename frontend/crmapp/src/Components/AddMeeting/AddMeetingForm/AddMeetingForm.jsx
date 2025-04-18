@@ -20,8 +20,8 @@ const AddMeetingForm = () => {
   const [assigned_to, setAssignedTo] = useState("");
 
   const { id } = useParams();
-  const [searchParams] = useSearchParams(); // Get query parameters
-  const leadIdFromParams = searchParams.get("leadId"); // Extract leadId
+  const [searchParams] = useSearchParams(); 
+  const leadIdFromParams = searchParams.get("leadId"); 
 
   const [errors, setErrors] = useState({
     company: "",
@@ -130,7 +130,6 @@ const AddMeetingForm = () => {
           response = await createMeeting(meetingData);
           console.log("Created meeting data:", response.data);
         }
-        // Navigate back to the lead details page after adding/updating
         if (leadIdFromParams) {
           navigator(`/view-lead/${leadIdFromParams}`);
         } else {
@@ -331,7 +330,7 @@ const AddMeetingForm = () => {
                   Created Date:
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
                   id="created"
                   name="created"
                   value={created}
@@ -349,7 +348,7 @@ const AddMeetingForm = () => {
                   Follow up Date:
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
                   id="follow_up"
                   name="follow_up"
                   value={follow_up}

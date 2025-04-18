@@ -3,15 +3,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = ({ formSwitcher, handleLoginSuccess }) => {
+const Login = ({ handleLoginSuccess }) => {
   const history = useNavigate();
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
-  const [error, setError] = useState(""); // State to handle login errors
-
-  console.log(loginData);
+  const [error, setError] = useState(""); 
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +21,7 @@ const Login = ({ formSwitcher, handleLoginSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear any previous errors
+    setError(""); 
 
     try {
       const response = await axios.post(
@@ -32,7 +30,8 @@ const Login = ({ formSwitcher, handleLoginSuccess }) => {
       );
 
       console.log("Login Response:", response.data);
-      if (response.status === 200) {
+      if (response.status === 200 && response.data.username) {
+        localStorage.setItem("loggedInUsername", response.data.username); // Store username
         if (handleLoginSuccess) {
           handleLoginSuccess(response.data);
         }
@@ -62,8 +61,7 @@ const Login = ({ formSwitcher, handleLoginSuccess }) => {
           <hr />
 
           <form onSubmit={handleSubmit}>
-            {error && <p className="error-message">{error}</p>}{" "}
-            {/* Display error message */}
+            {error && <p className="error-message">{error}</p>}
             <div className="login-field">
               <label htmlFor="username">Enter username</label>
               <input
@@ -93,7 +91,7 @@ const Login = ({ formSwitcher, handleLoginSuccess }) => {
             </button>
             <br />
             <div className="forget-password">
-              <a href="/forgot" onClick={() => formSwitcher("reset")}>
+              <a href="/forgot">
                 Forget Password?
               </a>
             </div>
