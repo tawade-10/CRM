@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { getAllMeetings, listLeads } from "../Services/Services";
+import { getAllMeetings, listLeads, getAllTickets } from "../Services/Services";
 import SideBar from "../SideBar/SideBar";
 import "./Dashboard.css";
 
@@ -9,6 +9,8 @@ const Dashboard = () => {
   const [totalLeads, setTotalLeads] = useState(0);
   const [recentLeads, setRecentLeads] = useState(0);
   const [meetingsToday, setMeetingsToday] = useState(0);
+  const [upcomingMeetings, setUpcomingMeetings] = useState(0);
+  const [totalTickets, setTotalTickets] = useState(0); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,22 +33,36 @@ const Dashboard = () => {
 
         const meetingsResponse = await getAllMeetings();
         const todayString = today.toISOString().split("T")[0];
-        let meetingsCount = 0;
+        let meetingsTodayCount = 0;
+        let upcomingMeetingsCount = 0;
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+        const tomorrowString = tomorrow.toISOString().split("T")[0];
 
         meetingsResponse.data.forEach((meeting) => {
-          const meetingDate = meeting.created
-            ? meeting.created.split("T")[0]
-            : null;
+          const meetingDate = meeting.created ? meeting.created.split("T")[0] : null;
           if (meetingDate === todayString) {
-            meetingsCount++;
+            meetingsTodayCount++;
+          } else if (meetingDate === tomorrowString) {
+            upcomingMeetingsCount++;
           }
         });
-        setMeetingsToday(meetingsCount);
+        setMeetingsToday(meetingsTodayCount);
+        setUpcomingMeetings(upcomingMeetingsCount);
+
+        const ticketsResponse = await getAllTickets();
+        if (ticketsResponse && ticketsResponse.data) {
+          setTotalTickets(ticketsResponse.data.length);
+        } else {
+          setTotalTickets(0);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         setMeetingsToday(0);
         setTotalLeads(0);
         setRecentLeads(0);
+        setUpcomingMeetings(0);
+        setTotalTickets(0);
       }
     };
 
@@ -69,15 +85,17 @@ const Dashboard = () => {
               <p className="description">
                 {meetingsToday === 0
                   ? "No Meetings Scheduled for Today"
-                  : `${meetingsToday} Meeting${
-                      meetingsToday !== 1 ? "s" : ""
-                    } Scheduled Today`}
+                  : `${meetingsToday} Meeting${meetingsToday !== 1 ? "s" : ""} Scheduled Today`}
               </p>
             </div>
             <div className="dashboardBox2">
               <p className="heading-text">Reminders</p>
-              <p className="numbers">0</p>
-              <p className="description">No Upcoming Meetings</p>
+              <p className="numbers">{upcomingMeetings}</p>
+              <p className="description">
+                {upcomingMeetings === 0
+                  ? "No Upcoming Meetings for Tomorrow"
+                  : `${upcomingMeetings} Meeting${upcomingMeetings !== 1 ? "s" : ""} Scheduled for Tomorrow`}
+              </p>
             </div>
             <div className="dashboardBox3">
               <p className="heading-text">Overdue Loads</p>
@@ -96,8 +114,12 @@ const Dashboard = () => {
             </div>
             <div className="dashboardBox6">
               <p className="heading-text">My Open Tickets</p>
-              <p className="numbers">0</p>
-              <p className="description">No Open Tickets available</p>
+              <p className="numbers">{totalTickets}</p> {/* Display total tickets here */}
+              <p className="description">
+                {totalTickets === 0
+                  ? "No Tickets available"
+                  : `${totalTickets} Ticket${totalTickets !== 1 ? "s" : ""} in Total`}
+              </p>
             </div>
             <div className="dashboardBox7">
               <p className="heading-text">My Dead Leads</p>
@@ -125,5 +147,20 @@ const Dashboard = () => {
     </div>
   );
 };
+
+// Assuming you have a service function like this in your Services/Services.js
+// export const getAllTickets = async () => {
+//   try {
+//     const response = await fetch('/api/tickets'); // Replace with your actual API endpoint
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const data = await response.json();
+//     return { data };
+//   } catch (error) {
+//     console.error("Error fetching tickets:", error);
+//     return { data: [] };
+//   }
+// };
 
 export default Dashboard;

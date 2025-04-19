@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createLead, getLead, UpdateLeads } from "../../Services/Services";
-import "./AddLeadsForm.css"; // Import the CSS file
+import "./AddLeadsForm.css";
 
 const AddLeadsForm = () => {
   const [company, setCompany] = useState("");
@@ -68,7 +68,7 @@ const AddLeadsForm = () => {
           setMeetingType(response.data.meeting_type);
           setValue(response.data.value);
           setComments(response.data.comments);
-          setLeadSource(response.data.leadSource);
+          setLeadSource(response.data.lead_source);
           setEventDetails(response.data.event_details);
         })
         .catch((error) => {
@@ -244,6 +244,7 @@ const AddLeadsForm = () => {
                   id="clientName"
                   name="clientName"
                   value={clientName}
+                  required
                   className={`form-control ${
                     errors.clientName ? "is-invalid" : ""
                   }`}
@@ -261,6 +262,7 @@ const AddLeadsForm = () => {
                   type="text"
                   id="company"
                   name="company"
+                  required
                   value={company}
                   className={`form-control ${
                     errors.company ? "is-invalid" : ""
@@ -280,6 +282,7 @@ const AddLeadsForm = () => {
                   type="text"
                   id="designation"
                   name="designation"
+                  required
                   value={designation}
                   className={`form-control ${
                     errors.designation ? "is-invalid" : ""
@@ -299,6 +302,7 @@ const AddLeadsForm = () => {
                   id="phone"
                   name="phone"
                   value={phone}
+                  required
                   className={`form-control ${errors.phone ? "is-invalid" : ""}`}
                   onChange={handleChange}
                 />
@@ -316,6 +320,7 @@ const AddLeadsForm = () => {
                   id="email"
                   name="email"
                   value={email}
+                  required
                   className={`form-control ${errors.email ? "is-invalid" : ""}`}
                   onChange={handleChange}
                 />
@@ -332,6 +337,7 @@ const AddLeadsForm = () => {
                   id="city"
                   name="city"
                   value={city}
+                  required
                   className={`form-control ${errors.city ? "is-invalid" : ""}`}
                   onChange={handleChange}
                 />
@@ -340,7 +346,7 @@ const AddLeadsForm = () => {
                 )}
               </div>
 
-              <div className="form-group full-width">
+              <div className="form-group form-group-full-width">
                 <label htmlFor="address" className="form-label">
                   Address:
                 </label>
@@ -349,6 +355,7 @@ const AddLeadsForm = () => {
                   id="address"
                   name="address"
                   value={address}
+                  required
                   className={`form-control ${
                     errors.address ? "is-invalid" : ""
                   }`}
@@ -368,6 +375,7 @@ const AddLeadsForm = () => {
                   id="value"
                   name="value"
                   value={value}
+                  required
                   className={`form-control ${errors.value ? "is-invalid" : ""}`}
                   onChange={handleChange}
                 />
@@ -384,6 +392,7 @@ const AddLeadsForm = () => {
                   id="comments"
                   name="comments"
                   value={comments}
+                  required
                   className={`form-control ${
                     errors.comments ? "is-invalid" : ""
                   }`}
@@ -403,6 +412,7 @@ const AddLeadsForm = () => {
                   id="status"
                   name="status"
                   value={status}
+                  required
                   className={`form-control ${
                     errors.status ? "is-invalid" : ""
                   }`}
@@ -420,6 +430,7 @@ const AddLeadsForm = () => {
                   id="priority"
                   name="priority"
                   value={priority}
+                  required
                   className={`form-control ${
                     errors.priority ? "is-invalid" : ""
                   }`}
@@ -444,6 +455,7 @@ const AddLeadsForm = () => {
                   id="assignedFrom"
                   name="assignedFrom"
                   value={assignedFrom}
+                  required
                   className={`form-control ${
                     errors.assignedFrom ? "is-invalid" : ""
                   }`}
@@ -462,6 +474,7 @@ const AddLeadsForm = () => {
                   id="assignedTo"
                   name="assignedTo"
                   value={assignedTo}
+                  required
                   className={`form-control ${
                     errors.assignedTo ? "is-invalid" : ""
                   }`}
@@ -481,6 +494,7 @@ const AddLeadsForm = () => {
                   id="followUp"
                   name="followUp"
                   value={followUp}
+                  required
                   className={`form-control ${
                     errors.followUp ? "is-invalid" : ""
                   }`}
@@ -499,6 +513,7 @@ const AddLeadsForm = () => {
                   id="eventDetails"
                   name="eventDetails"
                   value={eventDetails}
+                  required
                   className={`form-control ${
                     errors.eventDetails ? "is-invalid" : ""
                   }`}
@@ -508,26 +523,6 @@ const AddLeadsForm = () => {
                   <div className="invalid-feedback">{errors.eventDetails}</div>
                 )}
               </div>
-
-              <div className="form-group">
-                <label htmlFor="leadSource" className="form-label">
-                  Lead Source:
-                </label>
-                <input
-                  type="text"
-                  id="leadSource"
-                  name="leadSource"
-                  value={leadSource}
-                  className={`form-control ${
-                    errors.leadSource ? "is-invalid" : ""
-                  }`}
-                  onChange={handleChange}
-                />
-                {errors.leadSource && (
-                  <div className="invalid-feedback">{errors.leadSource}</div>
-                )}
-              </div>
-
               <div className="form-group">
                 <label htmlFor="created" className="form-label">
                   Created Date:
@@ -537,6 +532,7 @@ const AddLeadsForm = () => {
                   id="created"
                   name="created"
                   value={created}
+                  required
                   className={`form-control ${
                     errors.created ? "is-invalid" : ""
                   }`}
@@ -555,6 +551,7 @@ const AddLeadsForm = () => {
                   id="meetingType"
                   name="meetingType"
                   value={meetingType}
+                  required
                   className={`form-control ${
                     errors.meetingType ? "is-invalid" : ""
                   }`}
@@ -564,7 +561,28 @@ const AddLeadsForm = () => {
                   <div className="invalid-feedback">{errors.meetingType}</div>
                 )}
               </div>
+
+              <div className="form-group">
+                <label htmlFor="leadSource" className="form-label">
+                  Lead Source:
+                </label>
+                <input
+                  type="text"
+                  id="leadSource"
+                  name="leadSource"
+                  value={leadSource}
+                  required
+                  className={`form-control ${
+                    errors.leadSource ? "is-invalid" : ""
+                  }`}
+                  onChange={handleChange}
+                />
+                {errors.leadSource && (
+                  <div className="invalid-feedback">{errors.leadSource}</div>
+                )}
+              </div>
             </div>
+            <br />
             <button type="submit" className="submit-button">
               {id ? "Update Lead" : "Add Lead"}
             </button>

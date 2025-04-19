@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllMeetings } from "../../Services/Services"; // Import the service to fetch meetings
-import "./MeetingRecordsTable.css"; // Assuming you have some shared styles
+import { getAllMeetings } from "../../Services/Services"; 
+import "./MeetingRecordsTable.css"; 
 
 const MeetingRecordsTable = ({
   showAddMeetingButton,
@@ -15,11 +15,11 @@ const MeetingRecordsTable = ({
   const [notifications, setNotifications] = useState([]);
 
   function handleUpdateRecord(id) {
-    navigator(`/update-meeting/${id}`);
+    navigator(`/meeting-records/update-meeting/${id}`);
   }
 
   const handleViewLead = (leadId) => {
-    navigator(`/lead-details/${leadId}`);
+    navigator(`/meeting-records/lead-details/${leadId}`);
   };
 
   useEffect(() => {
@@ -108,6 +108,7 @@ const MeetingRecordsTable = ({
         <input
           type="search"
           className="form-control records-search-input"
+          placeholder="Search Meeting Records"
           value={search}
           onChange={handleSearchChange}
         />

@@ -11,7 +11,7 @@ const CustomersTable = () => {
   const navigator = useNavigate();
 
   function UpdateCustomer(id) {
-    navigator(`/update-leads/${id}`);
+    navigator(`/customers/update-leads/${id}`);
   }
 
   useEffect(() => {
@@ -63,6 +63,7 @@ const CustomersTable = () => {
         <input
           type="search"
           className="form-control"
+          placeholder="Search Customers"
           value={search}
           onChange={handleSearchChange}
         />

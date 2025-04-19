@@ -12,7 +12,7 @@ const AddLeadsMain = () => {
       <div className="main-content">
         <SideBar />
         <div className="right-content">
-          <div className="add-lead-white-container">
+          <div className="add-lead-container">
             <div className="addLeadsFormWrapper">
               <AddLeadsForm />
             </div>

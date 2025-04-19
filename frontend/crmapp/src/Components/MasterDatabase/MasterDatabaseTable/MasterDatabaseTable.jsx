@@ -44,7 +44,7 @@ const MasterDatabaseTable = () => {
     setSearch(e.target.value);
   };
 
-  // Adjust the filtering logic based on the fields in your master data
+  
   const filteredMasterData = masterData.filter((item) => {
     const searchFields = [
       item.client_name,
@@ -53,7 +53,6 @@ const MasterDatabaseTable = () => {
       item.assigned_to,
       item.follow_up,
       String(item.id),
-      // Add more fields to search through as needed
     ];
     return searchFields.some((field) =>
       String(field).toLowerCase().includes(search.toLowerCase())

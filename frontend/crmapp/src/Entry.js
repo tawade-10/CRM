@@ -8,7 +8,7 @@ import Login from "./Components/Login/Login";
 import PasswordReset from "./Components/PasswordReset/PasswordResetForm/PasswordReset";
 
 function Entry() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +36,6 @@ function Entry() {
     setIsAuthenticated(true);
     console.log("Login successful in Entry:", userData);
     navigate("/dashboard");
-    // Basic authentication: just set a flag in local storage
     localStorage.setItem("isAuthenticated", "true");
   };
 
@@ -59,7 +58,7 @@ function Entry() {
       );
       console.log("Login Response in Entry:", response.data);
       if (response.status === 200) {
-        handleLoginSuccessFromLogin(response.data); // Call the success handler
+        handleLoginSuccessFromLogin(response.data); 
       } else {
         alert("Login failed. Please check your credentials.");
       }
@@ -79,7 +78,6 @@ function Entry() {
       return alert("Please enter the Email!");
     }
     console.log({ email });
-    // Add your axios code for reset password here
   };
 
   return (

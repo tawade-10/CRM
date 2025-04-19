@@ -10,7 +10,7 @@ const LeadsTable = () => {
   const navigator = useNavigate();
 
   function UpdateLeads(id) {
-    navigator(`/update-leads/${id}`);
+    navigator(`/leads/update-leads/${id}`);
   }
 
   const handleDeleteLead = (id) => {
@@ -35,7 +35,6 @@ const LeadsTable = () => {
     listLeads()
       .then((response) => {
         setLeads(response.data);
-        // Initially, don't filter until the search button is clicked
         setFilteredLeads(response.data);
       })
       .catch((error) => {
@@ -82,6 +81,7 @@ const LeadsTable = () => {
         <input
           type="search"
           className="form-control"
+          placeholder="Search Leads"
           value={search}
           onChange={handleSearchChange}
         />
@@ -116,7 +116,7 @@ const LeadsTable = () => {
             {filteredLeads.map((lead) => (
               <tr key={lead.id}>
                 <td>
-                  <a href={`/lead-details/${lead.id}`}>{lead.id}</a>
+                  <a href={`/leads/lead-details/${lead.id}`}>{lead.id}</a>
                 </td>
                 <td>{lead.client_name}</td>
                 <td>{lead.company}</td>

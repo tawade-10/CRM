@@ -56,6 +56,22 @@ root.render(
           }
         />
         <Route
+          path="/connections"
+          element={
+            <ProtectedRoutes>
+              <Connections />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/connections/update-leads/:id"
+          element={
+            <ProtectedRoutes>
+              <UpdateLeads />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
           path="/leads"
           element={
             <ProtectedRoutes>
@@ -72,7 +88,7 @@ root.render(
           }
         />
         <Route
-          path="/update-leads/:id"
+          path="/leads/update-leads/:id"
           element={
             <ProtectedRoutes>
               <UpdateLeads />
@@ -80,7 +96,7 @@ root.render(
           }
         />
         <Route
-          path="/lead-details/:id"
+          path="/leads/lead-details/:id"
           element={
             <ProtectedRoutes>
               <LeadsDetails />
@@ -112,7 +128,7 @@ root.render(
           }
         />
         <Route
-          path="/update-ticket/:id"
+          path="/tickets/update-ticket/:id"
           element={
             <ProtectedRoutes>
               <AddTicketMain />
@@ -136,14 +152,6 @@ root.render(
           }
         />
         <Route
-          path="/connections"
-          element={
-            <ProtectedRoutes>
-              <Connections />
-            </ProtectedRoutes>
-          }
-        />
-        <Route
           path="/meeting-records"
           element={
             <ProtectedRoutes>
@@ -152,18 +160,26 @@ root.render(
           }
         />
         <Route
-          path="/master-database"
+          path="/meeting-records/update-meeting/:id"
           element={
             <ProtectedRoutes>
-              <MasterDatabase />
+              <UpdateMeeting />
             </ProtectedRoutes>
           }
         />
         <Route
-          path="/update-meeting/:id"
+          path="/meeting-records/lead-details/:id"
           element={
             <ProtectedRoutes>
-              <UpdateMeeting />
+              <LeadsDetails />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/master-database"
+          element={
+            <ProtectedRoutes>
+              <MasterDatabase />
             </ProtectedRoutes>
           }
         />

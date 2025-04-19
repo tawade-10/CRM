@@ -31,7 +31,7 @@ const TicketsTable = () => {
   const navigator = useNavigate();
 
   function UpdateTicket(id) {
-    navigator(`/update-ticket/${id}`);
+    navigator(`/tickets/update-ticket/${id}`);
   }
 
   const handleDeleteTicket = (id) => {
@@ -97,6 +97,7 @@ const TicketsTable = () => {
         <input
           type="search"
           className="form-control"
+          placeholder="Search Tickets"
           value={search}
           onChange={handleSearchChange}
         />

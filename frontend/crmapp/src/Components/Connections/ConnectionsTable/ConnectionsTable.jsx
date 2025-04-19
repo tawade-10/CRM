@@ -26,7 +26,7 @@ const ConnectionsTable = () => {
   };
 
   const updateConnection = (id) => {
-    navigate(`/update-leads/${id}`);
+    navigate(`/connections/update-leads/${id}`);
   };
 
   const handleSearchChange = (e) => {
@@ -61,6 +61,7 @@ const ConnectionsTable = () => {
         <input
           type="search"
           className="form-control"
+          placeholder="Search Connections"
           value={search}
           onChange={handleSearchChange}
         />
