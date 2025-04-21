@@ -9,7 +9,7 @@ const MasterDatabaseTable = () => {
   const navigator = useNavigate();
 
   function updateMasterDataItem(id) {
-    navigator(`/update-master-data/${id}`);
+    navigator(`/master-database/update-master-data/${id}`);
   }
 
   const handleDeleteMasterDataItem = (id) => {

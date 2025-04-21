@@ -17,6 +17,7 @@ import EditProfile from "./Components/EditProfile/EditProfileMain/EditProfileMai
 import AddLeadsMain from "./Components/Leads/AddLeadsMain/AddLeadsMain";
 import UpdateLeads from "./Components/Leads/UpdateLeadsMain/UpdateLeadsMain";
 import MasterDatabase from "./Components/MasterDatabase/MasterDatabaseMain/MasterDatabaseMain";
+import UpdateMasterDatabase from "./Components/MasterDatabase/UpdateMasterDatabase/UpdateMasterDatabaseMain";
 import MeetingRecords from "./Components/MeetingRecords/MeetingRecordsMain/MeetingRecordsMain";
 import UpdateMeeting from "./Components/MeetingRecords/UpdateMeeting/UpdateMeetingMain/UpdateMeetingMain";
 import NewPassword from "./Components/NewPassword/NewPasswordMain/NewPasswordMain";
@@ -144,6 +145,14 @@ root.render(
           }
         />
         <Route
+          path="/customers/update-leads/:id"
+          element={
+            <ProtectedRoutes>
+              <UpdateLeads />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
           path="/reports"
           element={
             <ProtectedRoutes>
@@ -180,6 +189,14 @@ root.render(
           element={
             <ProtectedRoutes>
               <MasterDatabase />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/master-database/update-master-data/:id"
+          element={
+            <ProtectedRoutes>
+              <UpdateLeads />
             </ProtectedRoutes>
           }
         />

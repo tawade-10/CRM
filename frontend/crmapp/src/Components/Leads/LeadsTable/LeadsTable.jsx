@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteLeads, listLeads } from "../../Services/Services";
-import "./LeadsTable.css";
+import { deleteLeads, listLeads } from "../../Services/Services"; // Import listDeletedLeads
+import "./LeadsTable.css"; // Reuse existing CSS or create a new one if needed
 
 const LeadsTable = () => {
   const [leads, setLeads] = useState([]);
@@ -18,7 +18,7 @@ const LeadsTable = () => {
       deleteLeads(id)
         .then((response) => {
           console.log("Lead deleted:", response.data);
-          fetchLeads();
+          fetchLeads(); // Refresh the leads table
         })
         .catch((error) => {
           console.error("Error deleting lead:", error);

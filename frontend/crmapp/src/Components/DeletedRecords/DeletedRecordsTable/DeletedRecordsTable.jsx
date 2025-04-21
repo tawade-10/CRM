@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteLeads } from "../../Services/Services"; // Assuming this service exists
+import { listDeletedLeads } from "../../Services/Services";
 import "./DeletedRecordsTable.css"; // Create a new CSS file
 
 const DeletedRecordsTable = () => {
@@ -17,7 +17,7 @@ const DeletedRecordsTable = () => {
   }, []);
 
   const fetchDeletedLeads = () => {
-    deleteLeads() 
+    listDeletedLeads() 
       .then((response) => {
         setDeletedLeads(response.data);
       })
@@ -30,24 +30,25 @@ const DeletedRecordsTable = () => {
     setSearch(e.target.value);
   };
 
-  const filteredDeletedLeads = deletedLeads.filter((lead) => {
-    const searchFields = [
-      lead.client_name,
-      lead.company,
-      lead.designation,
-      lead.assigned_from,
-      lead.assigned_to,
-      lead.priority,
-      lead.status,
-      lead.meeting_type,
-      String(lead.id),
-      lead.deleted_at, 
-      lead.deleted_by, 
-    ];
-    return searchFields.some((field) =>
-      String(field).toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  const handleSearchClick = () => {
+    const results = deletedLeads.filter((lead) => {
+      const searchFields = [
+        lead.client_name,
+        lead.company,
+        lead.designation,
+        lead.assigned_from,
+        lead.assigned_to,
+        lead.priority,
+        lead.status,
+        lead.meeting_type,
+        String(lead.id),
+      ];
+      return searchFields.some((field) =>
+        String(field).toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setDeletedLeads(results);
+  };
 
   return (
     <div className="deleted-leads-container">
@@ -64,7 +65,11 @@ const DeletedRecordsTable = () => {
           onChange={handleSearchChange}
           placeholder="Search Deleted Records..."
         />
-        <button type="button" className="btn btn-primary search-button">
+        <button
+          type="button"
+          className="btn btn-primary search-button"
+          onClick={handleSearchClick}
+        >
           <i className="fas fa-search">Search</i>
         </button>
       </div>
@@ -82,13 +87,13 @@ const DeletedRecordsTable = () => {
               <th>Priority</th>
               <th>Status</th>
               <th>Meeting Type</th>
-              <th>Deleted At</th> 
-              <th>Deleted By</th> 
-              <th>Actions</th> 
+              <th>Deleted At</th>
+              {/*<th>Deleted By</th>  Removed Deleted By */}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody className="scrollable-tbody">
-            {filteredDeletedLeads.map((lead) => (
+            {deletedLeads.map((lead) => (
               <tr key={lead.id}>
                 <td>{lead.id}</td>
                 <td>{lead.client_name}</td>
@@ -120,11 +125,11 @@ const DeletedRecordsTable = () => {
                 <td>{lead.status}</td>
                 <td>{lead.meeting_type}</td>
                 <td>
-                  {lead.deleted_at
-                    ? new Date(lead.deleted_at).toLocaleDateString()
+                  {lead.deletedAt
+                    ? new Date(lead.deletedAt).toLocaleDateString()
                     : "N/A"}
                 </td>
-                <td>{lead.deleted_by || "N/A"}</td>
+                {/*<td>{lead.deleted_by || "N/A"}</td> Removed deleted_by*/}
                 <td>
                   <button
                     className="btn btn-info btn-sm"
