@@ -6,7 +6,8 @@ const REST_API_BASE_URL = "http://localhost:8080/api/leads";
 export const listLeads = () => axios.get(REST_API_BASE_URL);
 
 // Function to fetch deleted leads
-export const listDeletedLeads = () => axios.get(`${REST_API_BASE_URL}/deleted`);
+export const listDeletedLeads = () =>
+  axios.get("http://localhost:8080/api/deleted-records");
 
 export const createLead = (lead) => axios.post(REST_API_BASE_URL, lead);
 export const getLead = (leadId) => axios.get(REST_API_BASE_URL + "/" + leadId);

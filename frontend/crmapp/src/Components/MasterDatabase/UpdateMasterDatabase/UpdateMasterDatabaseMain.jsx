@@ -8,7 +8,7 @@ import SideBar from "../../SideBar/SideBar";
 const Leads = () => {
   return (
     <div className="update-master-display-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="update-master-grid-section">

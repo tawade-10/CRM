@@ -9,7 +9,7 @@ import "./UpdateLeadsMain.css";
 const UpdateLeads = () => {
   return (
     <div className="update-leads-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="update-leads-form-section">

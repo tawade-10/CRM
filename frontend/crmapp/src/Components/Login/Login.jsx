@@ -9,7 +9,7 @@ const Login = ({ handleLoginSuccess }) => {
     username: "",
     password: "",
   });
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +21,9 @@ const Login = ({ handleLoginSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
+
+    console.log("Login handleSubmit called with:", loginData); // Log on submit
 
     try {
       const response = await axios.post(
@@ -29,18 +31,20 @@ const Login = ({ handleLoginSuccess }) => {
         loginData
       );
 
-      console.log("Login Response:", response.data);
+      console.log("Login Response in Login:", response.data);
       if (response.status === 200 && response.data.username) {
         localStorage.setItem("loggedInUsername", response.data.username); // Store username
+        console.log("Login successful, calling handleLoginSuccess");
         if (handleLoginSuccess) {
           handleLoginSuccess(response.data);
+          console.log("handleLoginSuccess completed");
         }
         history("/dashboard");
       } else {
         setError("Login failed. Please check your username and password.");
       }
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error("Login Error in Login:", error);
       if (
         error.response &&
         error.response.data &&
@@ -91,9 +95,7 @@ const Login = ({ handleLoginSuccess }) => {
             </button>
             <br />
             <div className="forget-password">
-              <a href="/forgot">
-                Forget Password?
-              </a>
+              <a href="/forgot">Forget Password?</a>
             </div>
           </form>
         </div>

@@ -37,7 +37,7 @@ const Reports = () => {
 
   return (
     <div className="reports-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="reports-content">

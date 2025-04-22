@@ -7,7 +7,7 @@ import MeetingRecordsTable from "../MeetingRecordsTable/MeetingRecordsTable";
 const MeetingRecordsMain = () => {
   return (
     <div className="meeting-records">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="right-content">

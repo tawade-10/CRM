@@ -7,7 +7,7 @@ import AddMeetingForm from "../AddMeetingForm/AddMeetingForm";
 const AddMeetingMain = () => {
   return (
     <div className="meeting-records">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="right-content">

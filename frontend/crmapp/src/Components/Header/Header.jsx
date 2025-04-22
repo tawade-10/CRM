@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { format } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import tecstaq_logo from "../Assets/tecstaq_logo.jpg";
-import "./Header.css";
 import { getAllMeetings } from "../Services/Services";
-import { format } from 'date-fns'; 
+import "./Header.css";
 
-const Header = ({ isDashboard, isAddLeadsPage, isRegistrationPage }) => {
+const Header = ({
+  isAuthenticated,
+  isDashboard,
+  isAddLeadsPage,
+  isRegistrationPage,
+}) => {
+  // Receive isAuthenticated as a prop
   const navigate = useNavigate();
   const location = useLocation();
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
-  const [notifications, setNotifications] = useState([]); 
+  const [notifications, setNotifications] = useState([]);
+
+  console.log("Header rendered - isAuthenticated prop:", isAuthenticated); // Log prop value
 
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
@@ -23,42 +30,46 @@ const Header = ({ isDashboard, isAddLeadsPage, isRegistrationPage }) => {
 
   const isTicketsPage = location.pathname.startsWith("/tickets");
 
-    useEffect(() => {
-        const fetchMeetingsAndGenerateNotifications = async () => {
-            if (isAuthenticated) { 
-                try {
-                    const meetingsResponse = await getAllMeetings();
-                    generateNotifications(meetingsResponse.data);
-                } catch (error) {
-                    console.error("Error fetching meetings for notifications:", error);
-                    setNotifications([]);
-                }
-            }
-        };
-        fetchMeetingsAndGenerateNotifications();
-    }, [isAuthenticated]); 
-
-
-    const generateNotifications = (meetings) => {
-        const today = format(new Date(), 'yyyy-MM-dd');
-        const tomorrow = format(new Date(new Date().setDate(new Date().getDate() + 1)), 'yyyy-MM-dd');
-        const generatedNotifications = [];
-
-        meetings.forEach((meeting) => {
-            const meetingDate = meeting.created ? format(new Date(meeting.created), 'yyyy-MM-dd') : null;
-
-            if (meetingDate === today) {
-                generatedNotifications.push(
-                    `Meeting scheduled today with ${meeting.company} at ${meeting.meeting_location}.`
-                );
-            } else if (meetingDate === tomorrow) {
-                generatedNotifications.push(
-                    `Meeting scheduled tomorrow with ${meeting.company} at ${meeting.meeting_location}.`
-                );
-            }
-        });
-        setNotifications(generatedNotifications);
+  useEffect(() => {
+    const fetchMeetingsAndGenerateNotifications = async () => {
+      if (isAuthenticated) {
+        try {
+          const meetingsResponse = await getAllMeetings();
+          generateNotifications(meetingsResponse.data);
+        } catch (error) {
+          console.error("Error fetching meetings for notifications:", error);
+          setNotifications([]);
+        }
+      }
     };
+    fetchMeetingsAndGenerateNotifications();
+  }, [isAuthenticated]);
+
+  const generateNotifications = (meetings) => {
+    const today = format(new Date(), "yyyy-MM-dd");
+    const tomorrow = format(
+      new Date(new Date().setDate(new Date().getDate() + 1)),
+      "yyyy-MM-dd"
+    );
+    const generatedNotifications = [];
+
+    meetings.forEach((meeting) => {
+      const meetingDate = meeting.created
+        ? format(new Date(meeting.created), "yyyy-MM-dd")
+        : null;
+
+      if (meetingDate === today) {
+        generatedNotifications.push(
+          `Meeting scheduled today with ${meeting.company} at ${meeting.meeting_location}.`
+        );
+      } else if (meetingDate === tomorrow) {
+        generatedNotifications.push(
+          `Meeting scheduled tomorrow with ${meeting.company} at ${meeting.meeting_location}.`
+        );
+      }
+    });
+    setNotifications(generatedNotifications);
+  };
 
   return (
     <div className="header">
@@ -72,7 +83,7 @@ const Header = ({ isDashboard, isAddLeadsPage, isRegistrationPage }) => {
         </a>
 
         <div className="auth-links">
-          {isAuthenticated ? (
+          {isAuthenticated ? ( // Use the isAuthenticated prop here
             <>
               <span className="welcome-text">Welcome {}</span>
               <a href="/dashboard" className="nav-link">

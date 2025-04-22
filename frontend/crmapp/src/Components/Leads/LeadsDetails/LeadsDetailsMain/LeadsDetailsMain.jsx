@@ -8,7 +8,7 @@ import "./LeadsDetailsMain.css"; // Create LeadsDetails.css
 const LeadsDetails = () => {
   return (
     <div className="leads-details">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="leads-detail-grid-section">

@@ -15,6 +15,8 @@ function Entry() {
   const [formLoad, setFormLoad] = useState("login");
   const navigate = useNavigate();
 
+  console.log("Entry rendered - isAuthenticated:", isAuthenticated); // Log during rendering
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -33,8 +35,9 @@ function Entry() {
   };
 
   const handleLoginSuccessFromLogin = (userData) => {
+    console.log("handleLoginSuccessFromLogin called with:", userData);
     setIsAuthenticated(true);
-    console.log("Login successful in Entry:", userData);
+    console.log("isAuthenticated updated to:", isAuthenticated);
     navigate("/dashboard");
     localStorage.setItem("isAuthenticated", "true");
   };
@@ -51,6 +54,8 @@ function Entry() {
       password: password,
     };
 
+    console.log("Login attempt with:", data); // Log before API call
+
     try {
       const response = await axios.post(
         "http://localhost:8080/loginUser",
@@ -58,7 +63,7 @@ function Entry() {
       );
       console.log("Login Response in Entry:", response.data);
       if (response.status === 200) {
-        handleLoginSuccessFromLogin(response.data); 
+        handleLoginSuccessFromLogin(response.data);
       } else {
         alert("Login failed. Please check your credentials.");
       }
@@ -82,7 +87,7 @@ function Entry() {
 
   return (
     <div>
-      <Header isAuthenticated={isAuthenticated} />
+      <Header isAuthenticated={isAuthenticated} /> {/* Pass isAuthenticated as a prop */}
       {formLoad === "login" && (
         <Login
           handleOnChange={handleOnChange}

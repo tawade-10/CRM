@@ -17,12 +17,12 @@ import EditProfile from "./Components/EditProfile/EditProfileMain/EditProfileMai
 import AddLeadsMain from "./Components/Leads/AddLeadsMain/AddLeadsMain";
 import UpdateLeads from "./Components/Leads/UpdateLeadsMain/UpdateLeadsMain";
 import MasterDatabase from "./Components/MasterDatabase/MasterDatabaseMain/MasterDatabaseMain";
-import UpdateMasterDatabase from "./Components/MasterDatabase/UpdateMasterDatabase/UpdateMasterDatabaseMain";
 import MeetingRecords from "./Components/MeetingRecords/MeetingRecordsMain/MeetingRecordsMain";
 import UpdateMeeting from "./Components/MeetingRecords/UpdateMeeting/UpdateMeetingMain/UpdateMeetingMain";
 import NewPassword from "./Components/NewPassword/NewPasswordMain/NewPasswordMain";
 import PasswordReset from "./Components/PasswordReset/PasswordResetMain/PasswordResetMain";
 import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
+import TicketDetailsMain from "./Components/Tickets/TicketDetails/TicketDetailsMain/TicketDetailsMain";
 import AddTicketMain from "./Components/Tickets/AddTicket/AddTicketMain/AddTicketMain";
 import VerifyOtp from "./Components/VerifyOtp/VerifyOtp";
 import Entry from "./Entry";
@@ -205,6 +205,14 @@ root.render(
           element={
             <ProtectedRoutes>
               <LeadsDetails />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/ticket-details/:id"
+          element={
+            <ProtectedRoutes>
+              <TicketDetailsMain />
             </ProtectedRoutes>
           }
         />

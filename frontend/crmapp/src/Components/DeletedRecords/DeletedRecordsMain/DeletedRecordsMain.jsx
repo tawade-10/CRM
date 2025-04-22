@@ -7,7 +7,7 @@ import DeletedRecordsTable from "../DeletedRecordsTable/DeletedRecordsTable";
 const DeletedRecords = () => {
   return (
     <div className="deleted-records-display-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="deleted-records-grid-section">

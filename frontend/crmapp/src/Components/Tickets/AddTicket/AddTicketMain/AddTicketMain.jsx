@@ -5,10 +5,10 @@ import SideBar from "../../../SideBar/SideBar";
 import AddTicketForm from "../AddTicketForm/AddTicketForm";
 import "./AddTicketMain.css";
 
-const Leads = () => {
+const AddTicketMain = () => {
   return (
     <div className="tickets-form-display-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="leads-grid-section">
@@ -20,4 +20,4 @@ const Leads = () => {
   );
 };
 
-export default Leads;
+export default AddTicketMain;

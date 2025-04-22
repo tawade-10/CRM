@@ -8,7 +8,7 @@ import "./UpdateMeetingMain.css";
 const UpdateMeetingMain = () => {
   return (
     <div className="update-meeting-display-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="update-meeting-grid-section">

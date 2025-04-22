@@ -9,7 +9,7 @@ import "./ConnectionsMain.css"
 const Connections = () => {
   return (
     <div className="connections">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="right-content-connections">

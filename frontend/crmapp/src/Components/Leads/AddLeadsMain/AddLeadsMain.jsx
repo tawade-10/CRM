@@ -8,7 +8,7 @@ import "./AddLeadsMain.css"
 const AddLeadsMain = () => {
   return (
     <div className="Addleads">
-      <Header isDashboard={true} isAddLeadsPage={true} />
+      <Header isAuthenticated={true} isAddLeadsPage={true} />
       <div className="main-content">
         <SideBar />
         <div className="right-content">

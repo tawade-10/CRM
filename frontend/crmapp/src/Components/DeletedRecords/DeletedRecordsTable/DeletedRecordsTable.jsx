@@ -17,7 +17,7 @@ const DeletedRecordsTable = () => {
   }, []);
 
   const fetchDeletedLeads = () => {
-    listDeletedLeads() 
+    listDeletedLeads()
       .then((response) => {
         setDeletedLeads(response.data);
       })

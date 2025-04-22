@@ -7,7 +7,7 @@ import "./EditProfileMain.css";
 const CustomersMain = () => {
   return (
     <div className="profile-display-page">
-      <Header isDashboard={true} />
+      <Header isAuthenticated={true} />
       <div className="main-content">
         <SideBar />
         <div className="profile-grid-section"></div>
